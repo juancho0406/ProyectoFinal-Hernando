@@ -1,8 +1,8 @@
-# React + Vite
+Detalles a tener en cuenta
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Quise usar la librearia para usar el saludo de sweetalert2 pero me daba error cuando lo queria usar en un componente. No se si es viable usarlo
+- Use un snipet para poder crear los componentes, no se si eso esta bien que lo use o puede tener consecuencias
+- No puedo poner la etiqueta a ni la de imagen ya que me daba error
+- Mas adelante voy a mejorar los estilos de la pagina para que quede mejor
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Gracias por la devolucion!

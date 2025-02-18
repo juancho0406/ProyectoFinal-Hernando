@@ -1,17 +1,23 @@
+import "./Item.css"
+
+ function Item({ nombre, precio}) {
 
 
-export default function Item() {
+ 
   return (
     
-    <div class="col">
-    <div class="card">
+    <div className="col">
+    <div className="card">
       
-      <div class="card-body mt-5">
-        <h5 class="card-title">Remera de Shohoku titular</h5>
-        <p class="card-text">Precio: $35000</p>
-        <button type="button" class="btn btn-danger">Agregar</button>
+      <div className="card-body mt-5">
+        <h5 className="card-title">{nombre}</h5>
+        <p className="card-text">Precio: {precio}</p>
+        <button type="button" className="btn btn-danger">Agregar</button>
       </div>
     </div>
   </div>
   )
 }
+
+
+export default Item
