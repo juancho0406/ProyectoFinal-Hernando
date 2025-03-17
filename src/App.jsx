@@ -10,6 +10,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
 
 
+
 function App() {
 
 
@@ -22,6 +23,7 @@ function App() {
  <Navbar/>
    
 <ItemListContainer greetings="Bienvenido"/>
+
 
 <Footer/>
 
