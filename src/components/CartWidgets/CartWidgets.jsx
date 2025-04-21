@@ -1,10 +1,13 @@
-import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
+import React from "react";
 
- function CartWidgets() {
+export default function CartWidgets({ totalCarrito }) {
   return (
-    <div className="col-4 d-flex justify-content-end mt-4">
-          <PiShoppingCartSimpleDuotone size={50} color="white"/>
-          </div>
-  )
+    <span
+      className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+      style={{ fontSize: "0.75rem" }}
+    >
+      {totalCarrito} {/* Muestra el totalCarrito */}
+      <span className="visually-hidden">productos en el carrito</span>
+    </span>
+  );
 }
-export default CartWidgets;

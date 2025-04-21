@@ -1,12 +1,13 @@
 header{
     height: 100px;
     background-color: black;
-    display: flex;
-  flex-direction: center;
 
     }
 
 .titulo{
         color:red;
         
+        }
+body {
+          overflow-x: hidden;
         }

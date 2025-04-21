@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Contador from "../contador/contador";
 import "./Item.css";
 
-function Item({ nombre, precio }) {
+function Item({ nombre, precio, setTotalCarrito }) {
   
   // estados
   const [mostrarContador, setMostrarContador] = useState(false);
@@ -32,7 +32,7 @@ function Item({ nombre, precio }) {
       )}
 
       {/* Mostrar el contador solo si mostrarContador es true */}
-      {mostrarContador && <Contador />}
+      {mostrarContador && <Contador setTotalCarrito={setTotalCarrito}/>}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "./ItemListContainer.css"
 import Item from "../Item/item"
 import { productos } from "../../productos"
 
-export default function ItemListContainer({greetings})
+export default function ItemListContainer({greetings, setTotalCarrito })
 
 
 {
@@ -16,7 +16,7 @@ export default function ItemListContainer({greetings})
      {
       productos.map(el => {
         return(
-          <Item key={el.id} nombre={el.nombre} precio={el.precio}/>
+          <Item key={el.id} nombre={el.nombre} precio={el.precio} setTotalCarrito={setTotalCarrito}/>
         )
       })
      }
