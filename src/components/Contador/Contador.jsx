@@ -27,7 +27,7 @@ export default function Contador({ setTotalCarrito }) {
         <>
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-danger mb-2"
             onClick={() => modificarNumero("-")}
           >
             -
@@ -35,7 +35,7 @@ export default function Contador({ setTotalCarrito }) {
           <p className="m-0">{numero}</p>
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-danger mb-2"
             onClick={() => modificarNumero("+")}
           >
             +
@@ -44,7 +44,7 @@ export default function Contador({ setTotalCarrito }) {
       ) : (
         <button
           type="button"
-          className="btn btn-danger"
+          className="btn btn-danger mb-2"
           onClick={handleAgregar}
         >
           Agregar

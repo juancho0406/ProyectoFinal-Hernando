@@ -18,11 +18,11 @@ export default function Navbar() {
       case "remeras":
         setMisProductos(productos.filter(el.categoria === "remeras")) 
         break;
-      case "pantalones":
-        setMisProductos(productos.filter(el.categoria === "pantalones")) 
+      case "buzos":
+        setMisProductos(productos.filter(el.categoria === "buzos")) 
         break;
-      case "zapatillas":
-        setMisProductos(productos.filter(el.categoria === "zapatillas"))
+      case "contacto":
+        setMisProductos(productos.filter(el.categoria === "contacto"))
         break;
       default:
         break;
@@ -49,10 +49,10 @@ export default function Navbar() {
               <a className="nav-link active" aria-current="page" href="#" onClick={() => usarfiltro("remeras")}>Remeras</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={() => usarfiltro("pantalones")}>Pantalones</a>
+              <a className="nav-link" href="#" onClick={() => usarfiltro("buzos")}>Buzos</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={() => usarfiltro("zapatillas")}>Zapatillas</a>
+              <a className="nav-link" href="#" onClick={() => usarfiltro("contacto")}>Contacto</a>
             </li>
           </ul>
         </div>
