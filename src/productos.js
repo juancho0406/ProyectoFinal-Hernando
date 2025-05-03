@@ -21,7 +21,7 @@ export const  productos = [
     nombre: "Buzo de Shingeki no Kiojin",
     precio: 60000,
     img:"https://res.cloudinary.com/ddsshsege/image/upload/v1746129901/1-7bf2d222e51caf15b217461181278053-640-0_kcirv7.webp",
-    categoria: "Buzo",
+    categoria: "Buzos",
     descripcion: "Buzo del equipo de reconocimiento del anime shingeki no Kiojin, Representa el valor por defender a sus seres queridos en batalla"
 },
 {
@@ -29,7 +29,7 @@ export const  productos = [
     nombre: "Buzo Shohoku ",
     precio: 50000,
     img:"https://res.cloudinary.com/ddsshsege/image/upload/v1746130353/1-312feb13e87428f6bb17448090741460-640-0_dhaym3.webp",
-    categoria: "Buzo",
+    categoria: "Buzos",
     descripcion: "Buzo de Shohoku orginal 100% algodon"
 }
 

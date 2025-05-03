@@ -1,18 +1,30 @@
 import "./Footer.css"
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer>
-<div class="container text-center mt-5 ">
-  <div class="row align-items-center">
-    <div class="col">
-    Todos los derechos reservados
+    <footer className="mt-5">
+<div className="container text-center mt-5 ">
+  <div className="row align-items-center">
+    <div className="col">
+    <span className="me-3 fw-bold">Dejanos tu Email para recibir Ofertas:</span>
     </div>
-    <div class="col">
-    Contacto
+    <div className="col">
+    <input
+              type="text"
+              className="form-control"
+              placeholder="Escribí tu mensaje"
+              style={{ maxWidth: "300px" }}
+            />
     </div>
-    <div class="col">
-    Sobre nosotros
+    <div className="col">
+      <p>Seguinos en nuestras redes!</p>
+    <FaInstagramSquare />
+    <FaXTwitter />
+    <FaFacebook />
+    
     </div>
   </div>
 </div>

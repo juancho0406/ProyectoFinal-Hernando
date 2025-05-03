@@ -21,20 +21,32 @@ function Item({ nombre, precio, img, setTotalCarrito, verDetalle }) {
 
           {/* Botón "Ver detalle" */}
           {verDetalle && (
-            <button className="btn btn-danger mb-2" onClick={verDetalle}>
+            <button
+              className="btn btn-danger mb-3 d-flex justify-content-center align-items-center"
+              onClick={verDetalle}
+            >
               Ver detalle
             </button>
           )}
 
           {/* Botón "Agregar" */}
           {mostrarBoton && (
-            <button className="btn btn-danger mb-2" onClick={manejarAgregar}>
+            <button
+              className="btn btn-danger mb-2 d-flex justify-content-center align-items-center"
+              onClick={manejarAgregar}
+            >
               Agregar
             </button>
           )}
 
-          {/* Contador */}
-          {mostrarContador && <Contador setTotalCarrito={setTotalCarrito} />}
+          {/* Contador con props para controlar estado del padre */}
+          {mostrarContador && (
+            <Contador
+              setTotalCarrito={setTotalCarrito}
+              setMostrarContador={setMostrarContador}
+              setMostrarBoton={setMostrarBoton}
+            />
+          )}
         </div>
       </div>
     </div>

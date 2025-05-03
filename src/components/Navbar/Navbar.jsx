@@ -1,58 +1,27 @@
-import "./Navbar.css"
-import { productos } from "../../productos"
-import React, { useState } from "react";
-import ItemListContainer from "../ItemListContainer/ItemListContainer";
-
-
+import "./Navbar.css";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
-  const [MisProductos, setMisProductos] = useState(productos)
-
-  const usarfiltro = (filtro) => {
-    switch (filtro) {
-      case "inicio":
-        setMisProductos(productos) 
-        
-        break;
-      case "remeras":
-        setMisProductos(productos.filter(el.categoria === "remeras")) 
-        break;
-      case "buzos":
-        setMisProductos(productos.filter(el.categoria === "buzos")) 
-        break;
-      case "contacto":
-        setMisProductos(productos.filter(el.categoria === "contacto"))
-        break;
-      default:
-        break;
-    };
-
-    return (
-      <div>
-        <Navbar usarfiltro={usarfiltro} /> {/* Pasamos la función como prop */}
-        <ItemListContainer productos={MisProductos} /> {/* Pasamos los productos filtrados como prop */}
-      </div>
-    );
-  }
-
+  
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#" onClick={() => usarfiltro("inicio")}>Inicio</a>
+      <Link className="navbar-brand" to="/">Inicio</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#" onClick={() => usarfiltro("remeras")}>Remeras</a>
+            <Link className="nav-link" to="/categoria/remeras">Remeras</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={() => usarfiltro("buzos")}>Buzos</a>
+            <Link className="nav-link" to="/categoria/buzos">Buzos</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={() => usarfiltro("contacto")}>Contacto</a>
+            <Link className="nav-link" to="/contacto">Contacto</Link>
             </li>
           </ul>
         </div>
