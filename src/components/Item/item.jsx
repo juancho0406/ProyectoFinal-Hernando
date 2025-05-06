@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import Contador from "../contador/contador";
 import "./Item.css";
+import { useCart } from "../../context/CartContext"; 
 
-function Item({ nombre, precio, img, setTotalCarrito, verDetalle }) {
+function Item({ nombre, precio, img, id, categoria, descripcion, verDetalle,  }) {
   const [mostrarContador, setMostrarContador] = useState(false);
   const [mostrarBoton, setMostrarBoton] = useState(true);
 
+  // Obtener la función addToCart desde el contexto
+  const { addToCart } = useCart();
+
+  const producto = {
+    id,
+    nombre,
+    precio,
+    img,
+    categoria,
+    descripcion,
+  };
+
   const manejarAgregar = () => {
+    // Llamamos a la función de agregar solo si el producto no está ya agregado
+    addToCart(producto); 
     setMostrarContador(true);
     setMostrarBoton(false);
   };
@@ -19,7 +34,6 @@ function Item({ nombre, precio, img, setTotalCarrito, verDetalle }) {
           <h5 className="card-title">{nombre}</h5>
           <p className="card-text">Precio: ${precio}</p>
 
-          {/* Botón "Ver detalle" */}
           {verDetalle && (
             <button
               className="btn btn-danger mb-3 d-flex justify-content-center align-items-center"
@@ -29,20 +43,18 @@ function Item({ nombre, precio, img, setTotalCarrito, verDetalle }) {
             </button>
           )}
 
-          {/* Botón "Agregar" */}
           {mostrarBoton && (
             <button
               className="btn btn-danger mb-2 d-flex justify-content-center align-items-center"
-              onClick={manejarAgregar}
+              onClick={manejarAgregar} // Solo ejecutamos manejarAgregar aquí
             >
               Agregar
             </button>
           )}
 
-          {/* Contador con props para controlar estado del padre */}
           {mostrarContador && (
             <Contador
-              setTotalCarrito={setTotalCarrito}
+            producto={producto}
               setMostrarContador={setMostrarContador}
               setMostrarBoton={setMostrarBoton}
             />
@@ -54,3 +66,4 @@ function Item({ nombre, precio, img, setTotalCarrito, verDetalle }) {
 }
 
 export default Item;
+

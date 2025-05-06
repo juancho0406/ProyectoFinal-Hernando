@@ -1,10 +1,48 @@
-import React, { useState } from "react";
-import Contador from "../contador/contador";
+import React, { useState, useEffect } from "react";
+import Contador from "../contador/contador.jsx";
+import { useCart } from "../../context/CartContext"; // IMPORTANTE
 
-function ItemDetailContainer({ producto, volver, setTotalCarrito }) {
-  const [mostrarContador, setMostrarContador] = useState(false); // Para mostrar el contador
+function ItemDetailContainer({ producto, volver }) {
+  const [productoDetail, setProductoDetail] = useState(null);
+  const [mostrarContador, setMostrarContador] = useState(false);
+  const [mostrarBoton, setMostrarBoton] = useState(true);
 
-  if (!producto) return null;
+  const { addToCart, carrito } = useCart(); // usar carrito
+
+  useEffect(() => {
+    if (producto) {
+      setProductoDetail(producto);
+    } else {
+      console.error("Producto no encontrado en ItemDetailContainer");
+    }
+  }, [producto]);
+
+  // Usamos useEffect para actualizar el estado al cargar el producto
+  useEffect(() => {
+    if (producto) {
+      setProductoDetail(producto);
+    } else {
+      console.error("Producto no encontrado en ItemDetailContainer");
+    }
+  }, [producto]);
+
+  // Este efecto se dispara cuando cambia el carrito o el producto
+  useEffect(() => {
+    if (productoDetail) {
+      const productoEnCarrito = carrito.find((p) => p.id === productoDetail.id);
+      if (productoEnCarrito) {
+        setMostrarContador(true);
+        setMostrarBoton(false);
+      } else {
+        setMostrarContador(false);
+        setMostrarBoton(true);
+      }
+    }
+  }, [carrito, productoDetail]);
+
+  if (!productoDetail) {
+    return <p>Cargando...</p>;
+  }
 
   return (
     <div
@@ -13,31 +51,37 @@ function ItemDetailContainer({ producto, volver, setTotalCarrito }) {
     >
       <div className="card p-5" style={{ maxWidth: "600px", width: "100%" }}>
         <img
-          src={producto.img}
-          alt={producto.nombre}
+          src={productoDetail.img}
+          alt={productoDetail.nombre}
           className="card-img-top"
         />
         <div className="card-body">
-          <h5 className="card-title">{producto.nombre}</h5>
+          <h5 className="card-title">{productoDetail.nombre}</h5>
           <p className="card-text">
-            <strong>Precio:</strong> ${producto.precio}
+            <strong>Precio:</strong> ${productoDetail.precio}
           </p>
           <p className="card-text">
-            <strong>Descripción:</strong> {producto.descripcion}
+            <strong>Descripción:</strong> {productoDetail.descripcion}
           </p>
 
-          {/* Mostrar solo el botón "Agregar" si no se ha mostrado el contador */}
-          {!mostrarContador ? (
+          {mostrarBoton && (
             <button
-              className="d-flex justify-content-center align-items-center btn btn-danger mb-2"
-              onClick={() => setMostrarContador(true)}
+              className="btn btn-danger mt-3"
+              onClick={() => {
+                addToCart(productoDetail);
+                setMostrarContador(true);
+                setMostrarBoton(false);
+              }}
             >
               Agregar
             </button>
-          ) : (
+          )}
+
+          {mostrarContador && (
             <Contador
-              setTotalCarrito={setTotalCarrito}
+              producto={productoDetail}
               setMostrarContador={setMostrarContador}
+              setMostrarBoton={setMostrarBoton}
             />
           )}
 
@@ -51,3 +95,4 @@ function ItemDetailContainer({ producto, volver, setTotalCarrito }) {
 }
 
 export default ItemDetailContainer;
+
