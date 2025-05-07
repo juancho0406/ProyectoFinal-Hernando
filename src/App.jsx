@@ -7,7 +7,8 @@ import Footer from "./components/Footer/Footer";
 import Contacto from "./components/Contacto/Contacto";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from './context/CartContext';
-
+import BuscarResultados from "./components/BuscarResultados/BuscarResultados";
+import Checkout from "./components/Checkout/Checkout"
 
 function App() {
   const [totalCarrito, setTotalCarrito] = useState(0);
@@ -19,8 +20,11 @@ function App() {
     <BrowserRouter>
       <Header totalCarrito={totalCarrito} />
       <Navbar />
+      
       <main>
+        
       <Routes>
+      <Route path="/buscar" element={<BuscarResultados />} />
         <Route
           path="/"
           element={
@@ -39,9 +43,9 @@ function App() {
           }
           
         />
-        
-
         <Route path="/contacto" element={<Contacto />} />
+
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       </main>
       <Footer />
