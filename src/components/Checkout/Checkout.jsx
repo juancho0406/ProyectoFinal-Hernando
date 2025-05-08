@@ -8,6 +8,9 @@ import {
 } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { db } from "../../firebaseConfig";
+import { addDoc, collection } from "firebase/firestore";
+import { useCart } from "../../context/CartContext";
 
 const Checkout = ({ onVolver }) => {
   const [userInfo, setUserInfo] = useState({
@@ -19,15 +22,16 @@ const Checkout = ({ onVolver }) => {
     cvv: "",
   });
 
+  const { carrito, totalCarrito, clearCart } = useCart(); // Asegurate de tener clearCart en tu context
+
   const handleInputChange = (evento) => {
     const { name, value } = evento.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handleSubmit = (evento) => {
+  const handleSubmit = async (evento) => {
     evento.preventDefault();
-    
-    // Validación de tarjeta
+
     const tarjetaValida = /^\d{16}$/.test(userInfo.tarjeta);
     const vencimientoValido = /^\d{2}\/\d{2}$/.test(userInfo.vencimiento);
     const cvvValido = /^\d{3}$/.test(userInfo.cvv);
@@ -37,15 +41,40 @@ const Checkout = ({ onVolver }) => {
       return;
     }
 
-    console.log("Datos enviados:", userInfo);
+    const order = {
+      buyer: {
+        nombre: userInfo.nombre,
+        email: userInfo.email,
+        telefono: userInfo.telefono,
+      },
+      items: carrito,
+      total: totalCarrito,
+      date: new Date(),
+    };
 
-    // Mostrar el toast de agradecimiento
-    toast.success("¡Muchas gracias por tu compra!", {
-      position: "top-center",
-      autoClose: 3000,
-    });
+    try {
+      const ordersCollection = collection(db, "orders");
+      await addDoc(ordersCollection, order);
 
-    // Acá podrías limpiar los campos o redirigir si querés
+      toast.success("¡Muchas gracias por tu compra!", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+
+      // Limpiar campos y carrito después de guardar
+      setUserInfo({
+        nombre: "",
+        email: "",
+        telefono: "",
+        tarjeta: "",
+        vencimiento: "",
+        cvv: "",
+      });
+      clearCart();
+    } catch (error) {
+      console.error("Error al guardar la orden en Firestore:", error);
+      toast.error("Ocurrió un error al guardar tu compra.");
+    }
   };
 
   return (
@@ -84,7 +113,6 @@ const Checkout = ({ onVolver }) => {
           fullWidth
         />
 
-        {/* Campos de tarjeta */}
         <TextField
           label="Número de Tarjeta (16 dígitos)"
           name="tarjeta"
@@ -134,3 +162,4 @@ const Checkout = ({ onVolver }) => {
 };
 
 export default Checkout;
+  
